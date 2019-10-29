@@ -21,6 +21,7 @@ class App extends Component {
   };
 
   componentDidMount = () => {
+    fetch(`https://www.food2fork.com/api/search?key=${API_KEY}&q=chicken`);
     const json = localStorage.getItem('recipes');
     const recipes = JSON.parse(json);
     this.setState({ recipes: recipes });
