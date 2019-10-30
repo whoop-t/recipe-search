@@ -20,6 +20,18 @@ class App extends Component {
     this.setState({ recipes: data.recipes });
   };
 
+  componentDidMount = () => {
+    fetch(`https://www.food2fork.com/api/search?key=${API_KEY}&q=chicken`);
+    const json = localStorage.getItem('recipes');
+    const recipes = JSON.parse(json);
+    this.setState({ recipes: recipes || [] });
+  };
+
+  componentDidUpdate = () => {
+    const recipes = JSON.stringify(this.state.recipes);
+    localStorage.setItem('recipes', recipes);
+  };
+
   render() {
     return (
       <div className="App">
